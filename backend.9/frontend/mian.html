@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>欢迎来到node js 的新项目</h1>
+</body>
+
+    <script>
+    api("todo/read",{id:2}).then(r=>console.log(r))
+
+    function api(part, param$) {
+        const base = "http://localhost:5000/";
+        let url = base + part;
+
+        if (param$) {
+            let query$ = "?"
+            for (let key in param$) {
+                query$ += key + "=" + param$[key] + "&"
+            }
+            url += query$
+        }
+        return fetch(url).then(res=>res.json())
+    }
+
+</script>
+</html>
